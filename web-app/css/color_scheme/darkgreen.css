@@ -1,0 +1,15 @@
+/* Menu bar */
+nav#horizontal {
+background: url(../../images/theme/darkgreen/menu.png) center top;
+}
+
+/* Links color */
+a { color: #3B613A; }
+a:hover{ color: #446A43; }
+
+/* Passive hedings link color */
+h1a, h2 a, h3 a, h4 a , h5 a, h6a{
+	color: #444;
+}
+
+

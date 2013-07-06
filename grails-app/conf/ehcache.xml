@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd">
+	<cacheManagerEventListenerFactory
+		class="" properties="" />
+		
+	<defaultCache 
+		maxElementsInMemory="300" 
+		eternal="false"
+		timeToLiveSeconds="120">
+	</defaultCache>
+	
+	<!-- Los campos estan cacheados por una hora maximo -->
+	<cache 	
+		name="com.clickandgolf.Campo" 
+		maxElementsInMemory="100" 
+		timeToIdleSeconds="3600">
+	</cache>
+
+	<!-- Las ubicaciones se cachean por un dia entero -->
+	<cache 	
+		name="com.clickandgolf.Ubicacion" 
+		maxElementsInMemory="50" 
+		timeToIdleSeconds="86400">
+	</cache>
+	<cache 	
+		name="com.clickandgolf.Fiesta" 
+		maxElementsInMemory="100" 
+		timeToIdleSeconds="86400">
+	</cache>
+	<cache 	
+		name="com.clickandgolf.Promocion" 
+		maxElementsInMemory="10" 
+		timeToIdleSeconds="86400">
+	</cache>
+	<cache 	
+		name="com.clickandgolf.Scorecard" 
+		maxElementsInMemory="200" 
+		timeToIdleSeconds="86400">
+	</cache>
+	<cache 	
+		name="com.clickandgolf.Scorecardmetadata" 
+		maxElementsInMemory="100" 
+		timeToIdleSeconds="86400">
+	</cache>
+	
+	<cache name="org.hibernate.cache.UpdateTimestampsCache"
+		maxElementsInMemory="1000" timeToIdleSeconds="300" />
+		
+	<cache name="org.hibernate.cache.StandardQueryCache"
+		maxElementsInMemory="200" timeToIdleSeconds="300" />
+		
+</ehcache>

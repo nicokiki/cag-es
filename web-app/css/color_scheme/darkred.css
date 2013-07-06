@@ -1,0 +1,15 @@
+/* Menu bar */
+nav#horizontal {
+background: url(../../images/theme/darkred/menu.png) center top;
+}
+
+/* Links color */
+a { color: #5C1B24; }
+a:hover{ color: #AD1A08; }
+
+/* Passive hedings link color */
+h1a, h2 a, h3 a, h4 a , h5 a, h6a{
+	color: #444;
+}
+
+

@@ -1,0 +1,15 @@
+/* Menu bar */
+nav#horizontal {
+background: url(../../images/theme/tomato/menu.png) center top;
+}
+
+/* Links color */
+a { color: #DC6848; }
+a:hover{ color: #F29075; }
+
+/* Passive hedings link color */
+h1a, h2 a, h3 a, h4 a , h5 a, h6a{
+	color: #444;
+}
+
+

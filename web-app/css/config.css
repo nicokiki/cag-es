@@ -1,0 +1,1047 @@
+/* 960 grid system */
+@import url('grid_12.css');
+/* Typography and elements */
+@import url('typography.css');
+/* Forms styles */
+@import url('chosen.css');
+/* Forms styles 2 */
+@import url('uniform.default.css');
+/* Main styles */
+@import url('style.css');
+/* Lightbox Evolution */
+@import url('../js/lightbox/themes/white-green/jquery.lightbox.css');
+
+/* Color Scheme */
+@import url('color_scheme/green2.css');
+
+/* Para la letra Lato de los captions de las imatnes */
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
+/*-----------------------------------------
+Write your custom CSS in this file, below this comment.
+Tip: you can copy (don't cut text, just copy and paste it here) the necesay styles from style.css and paste them here and make the changes
+-----------------------------------------*/
+
+/* !!! First Example -- Background Pattern and Color */
+body {
+	background: url(../images/pattern/13.png) 0 0 scroll #CCCCCC;
+	color: #444;
+}
+
+/* Para el home que tenga el slider mas chico */
+.box_skitter_slider2 {
+	width:460px;
+	margin-top: 10px;
+	height:310px;
+}
+
+/* */
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+  /*margin-top: 10px;*/
+}
+
+/* Para las descripciones del slider del home */
+.caption  h4 {
+	margin-top:4px;
+	margin-bottom:3px;
+}
+
+.box_skitter .label_skitter {
+	bottom: 0px;
+	width: 100%;
+}
+
+.box_skitter .caption{
+	color: #FFF; 
+
+/* 	background: rgba(0, 0, 0, 0.5) !important; */
+	
+	background: rgb(0, 0, 0) !important;
+	background: rgba(0, 0, 0, 0.5) !important;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+	float: right;
+	text-align: left;
+	width: 100%;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+}
+
+.caption  h4 {
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left: 5px;
+	color: #FFF; 
+}
+
+.caption p {
+	font-family: 'Lato', sans-serif; 
+	font-weight: 400;
+	margin-bottom: 5px;
+	margin-top: 2px;
+	margin-left: 5px;
+	margin-right: 5px;
+	color: #FFF; 
+}
+
+
+h1 {	
+	font-size:35px;
+	font-weight: bold;
+	color: black;
+}
+
+.video_home {
+	margin-bottom: 0px;
+}
+
+/** Para Lightbox q el title no tenga padding ni margin y se vea bien alineado abajo a la izquierda */
+.jquery-lightbox-title {
+	padding:0px;
+	margin:0px;
+}
+
+.loginTitle {
+	font-size: 14px;
+	font-weight: 600;
+	color: #555;
+}
+
+.layoutLogin {
+	padding-top: 10px;
+	padding-bottom: 30px;
+	position: relative;
+}
+
+.errorLoginMessage, .errorMessage {
+	padding: 6px 25px 20px 25px;
+	color: #c33;
+}
+
+/** Para el paginador le pongo lo mismo q tenia pagination del template CSS q compre */
+/* Pagination Global */
+#pagination {
+	display:block;
+	text-align:center;
+	height:22px;
+	line-height:21px;
+	clear:both;
+	margin: 20px 0 10px 0;
+	margin-left:-5px;
+	font-size:12px;
+	font-weight:400;
+}
+
+#pagination a, #pagination .currentStep, #pagination .disabled_list_pagination{
+	padding:5px 10px;
+	border:1px solid #B4B4B4;
+	margin-left:5px;
+	text-decoration:none;
+	background-color:#F4F4F4;
+	width:22px;
+	font-weight:400;
+	color: #868686;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+
+#pagination a {
+	background: #eeeeee; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #eeeeee 0%, #bfbfbf 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#eeeeee), color-stop(100%,#bfbfbf)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  #eeeeee 0%,#bfbfbf 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  #eeeeee 0%,#bfbfbf 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  #eeeeee 0%,#bfbfbf 100%); /* IE10+ */
+	background: radial-gradient(center, ellipse cover,  #eeeeee 0%,#bfbfbf 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#bfbfbf',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	border:1px solid #666;
+	color: #555;
+}
+
+#pagination a:hover, #pagination .currentStep{
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+	color: #333;
+}
+
+#pagination .currentStep {
+	cursor:default;
+	border:1px solid #666;
+}
+
+#pagination .disabled_list_pagination {
+	background-color:#F5F5F5;
+	color:#777;
+	cursor:default;
+}
+
+/* Para el wrap del mainPanel */
+#wrapPanel {
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+}
+
+.wrap_blockPanel {
+	width: 100%; /* Para q no tenga nada a la derecha ni margin ni nada */
+	position: relative;
+	background: url(../images/wrap_block.png) repeat-x 0 0 #eee;
+	border-radius: 10px 10px 15px 15px;
+	-moz-border-radius: 10px 10px 15px 15px;
+	-webkit-border-radius: 10px 10px 15px 15px;
+	    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+	    -moz-box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+	    -webkit-box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+}
+
+
+.bodyPanel {
+	background: url(none); /* no existe pero no muestra nada al menos */
+  	min-width: 550px;
+  	width: 550px;
+  	height: 350px;
+  	
+}
+
+.containerPanel {
+	width: 550px;
+	height: 350px;	
+}
+
+.fieldsetPanel, .fieldsetRegistro, .fieldsetReserva {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Para contact o contactPanel xq son distintos */
+
+#contact  input[type=text], #contact .email, #contact .pwd, #contact  textarea {
+	color: #333;
+	font: 13px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	border: 1px solid #ccc;
+	padding:0 3px;
+	line-height: 24px;
+	margin: 10px 8px 21px -4px;
+	width: 380px;
+	height: 36px;
+	outline: none;
+	background: #fff;
+	-webkit-border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+
+
+#contact  input[type=password] {
+	color: #333;
+	font: 13px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	border: 1px solid #ccc;
+	padding:0 3px;
+	line-height: 24px;
+	margin: 10px 8px 21px -4px;
+	width: 380px;
+	height: 36px;
+	outline: none;
+	background: #fff;
+	-webkit-border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+
+
+#contact .input_label {
+	width: 100px !important;
+	display: inline-block;
+	background: #eee;
+	height: 36px;
+	line-height: 36px;
+	margin-right: 0;
+	border: 1px solid #ccc;
+	border-right: 1px solid #fff;
+	-webkit-border-radius:5px 0 0 5px;
+	-moz-border-radius:5px 0 0 5px;
+	border-radius:5px 0 0 5px;
+}
+
+#contact .user_verify{
+	width: 100px !important;
+}
+  
+  
+/* Para contactPanel */  
+/*
+CONTACT FORM
+------------------------------------*/
+#contactPanel  input[type=text], #contactPanel .email, #contactPanel  textarea{
+	color: #333;
+	font: 13px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	border: 1px solid #ccc;
+	padding:0 3px;
+	line-height: 24px;
+	margin: 10px 8px 21px -4px;
+	width: 380px;
+	height: 38px;
+	outline: none;
+	background: #fff;
+	-webkit-border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+
+#contactPanel  input[type=password] {
+	color: #333;
+	font: 13px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	border: 1px solid #ccc;
+	padding:0 3px;
+	line-height: 24px;
+	margin: 10px 8px 21px -4px;
+	width: 380px;
+	height: 38px;
+	outline: none;
+	background: #fff;
+	-webkit-border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+
+
+#contactPanel .email:focus{
+	background: #fff;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+#contactPanel textarea{
+	height: 200px;
+	width: 514px;
+	padding:7px;
+	margin-left: 0;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+
+#contactPanel label{
+	padding:0 0 0 30px;
+	height: 36px;
+	line-height: 36px;
+	display: block;
+}
+
+#contactPanel .input_label {
+	width: 110px !important;
+	display: inline-block;
+	background: #eee;
+	height: 36px;
+	line-height: 36px;
+	margin-right: 0;
+	border: 1px solid #ccc;
+	border-right: 1px solid #fff;
+	-webkit-border-radius:5px 0 0 5px;
+	-moz-border-radius:5px 0 0 5px;
+	border-radius:5px 0 0 5px;
+}
+
+
+#contactPanel .user label{
+	background: url(../images/user.png) no-repeat 8px center;
+}
+#contactPanel .user_email label{
+	background: url(../images/email.png) no-repeat 8px center;
+}
+#contactPanel .user_subject label{
+	background: url(../images/subject.png) no-repeat 8px center;
+}
+#contactPanel .user_verify label{
+	background: url(../images/verify.png) no-repeat 8px center;
+}
+#contactPanel .user_verify{
+	width: 110px !important;
+}
+#contactPanel .user_verify2{
+	width: 90px !important;
+}
+#contactPanel .user_verify2 label{
+	padding:0 !important;
+}
+#contactPanel .user_verify2 .c_img_verify{
+	margin: -4px 5px 0 6px;
+	padding:0;
+	border:0;
+}
+#contactPanel .div_verify{
+	float: left;
+}
+#contactPanel  input[type=submit] {
+	cursor: pointer;
+}
+
+#contactPanel  .captcha {
+	line-height: 20px;
+	width: 64px !important;
+	margin-top: 13px;
+	border: 1px solid #ccc;
+	font-weight: 700;
+	color: #000;
+}
+
+#contactPanel .contact_submit {
+	margin: 0;
+	margin-top: 11px !important;
+	margin-left: 12px;
+	padding: 8px 9px 9px !important;
+}
+
+  
+  
+  
+/** Para el header */
+nav#horizontal {
+	margin-top: 20px;
+}
+
+.headerLoginHorizontal {
+	/** width: 1000px; 
+	border: 0;
+	position: relative;  */
+	margin-top: 5px;
+	height: 15px;
+}
+
+.rightAligned {
+	text-align:right;
+}
+
+.justifyAligned {
+	text-align: justify;
+}
+
+.centerAligned {
+	text-align:center;
+}
+
+.middleAligned {
+	vertical-align: middle;
+}
+
+/** Le saco el padding top para que quede bien arriba. Si lo comento dejo un padding-top y bottom de 20px creo */  
+#wrap {
+	padding: 0px;
+}
+
+.mySelect {
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding:2px;
+}
+
+/** ------------------------- */
+/** Inicio - Para el Registro */
+/** ------------------------- */
+
+#wrapRegistro {
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+}
+
+.wrap_blockRegistro {
+	width: 100%; /* Para q no tenga nada a la derecha ni margin ni nada */
+	position: relative;
+	background: url(../images/wrap_block.png) repeat-x 0 0 #eee;
+	border-radius: 10px 10px 15px 15px;
+	-moz-border-radius: 10px 10px 15px 15px;
+	-webkit-border-radius: 10px 10px 15px 15px;
+	    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+	    -moz-box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+	    -webkit-box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+}
+
+
+.bodyRegistro {
+	background: url(none); /* no existe pero no muestra nada al menos */
+  	min-width: 550px;
+  	width: 550px;
+  	height: 350px;
+  	
+}
+
+.containerRegistro {
+	width: 550px;
+	height: 430px;	
+}
+
+#contactRegistro  input[type=text], #contactRegistro .email, #contactRegistro  textarea{
+	color: #333;
+	font: 13px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	border: 1px solid #ccc;
+	padding:0 3px;
+	line-height: 24px;
+	margin: 10px 8px 21px -4px;
+	width: 380px;
+	height: 38px;
+	outline: none;
+	background: #fff;
+	-webkit-border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+
+#contactRegistro  input[type=password] {
+	color: #333;
+	font: 13px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	border: 1px solid #ccc;
+	padding:0 3px;
+	line-height: 24px;
+	margin: 10px 8px 21px -4px;
+	width: 380px;
+	height: 38px;
+	outline: none;
+	background: #fff;
+	-webkit-border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+
+
+#contactRegistro .email:focus{
+	background: #fff;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+#contactRegistro textarea{
+	height: 200px;
+	width: 514px;
+	padding:7px;
+	margin-left: 0;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+
+#contactRegistro label{
+	padding:0 0 0 30px;
+	height: 36px;
+	line-height: 36px;
+	display: block;
+}
+
+#contactRegistro .input_label {
+	width: 110px !important;
+	display: inline-block;
+	background: #eee;
+	height: 36px;
+	line-height: 36px;
+	margin-right: 0;
+	border: 1px solid #ccc;
+	border-right: 1px solid #fff;
+	-webkit-border-radius:5px 0 0 5px;
+	-moz-border-radius:5px 0 0 5px;
+	border-radius:5px 0 0 5px;
+}
+
+
+#contactRegistro .user label{
+	background: url(../images/user.png) no-repeat 8px center;
+}
+#contactRegistro .user_email label{
+	background: url(../images/email.png) no-repeat 8px center;
+}
+#contactRegistro .user_subject label{
+	background: url(../images/subject.png) no-repeat 8px center;
+}
+#contactRegistro .user_verify label{
+	background: url(../images/verify.png) no-repeat 8px center;
+}
+#contactRegistro .user_verify{
+	width: 110px !important;
+}
+#contactRegistro .user_verify2{
+	width: 90px !important;
+}
+#contactRegistro .user_verify2 label{
+	padding:0 !important;
+}
+#contactRegistro .user_verify2 .c_img_verify{
+	margin: -4px 5px 0 6px;
+	padding:0;
+	border:0;
+}
+#contactRegistro .div_verify{
+	float: left;
+}
+#contactRegistro  input[type=submit] {
+	cursor: pointer;
+}
+
+#contactRegistro  .captcha {
+	line-height: 20px;
+	width: 64px !important;
+	margin-top: 13px;
+	border: 1px solid #ccc;
+	font-weight: 700;
+	color: #000;
+}
+
+#contactRegistro .contact_submit {
+	margin: 0;
+	margin-top: 11px !important;
+	margin-left: 12px;
+	padding: 8px 9px 9px !important;
+}
+
+
+/** ---------------------- */
+/** Fin - Para el Registro */
+/** ---------------------- */
+
+.successMessage {
+	padding: 6px 25px 20px 25px;
+	color: blue;
+}
+
+.welcomeHeaderText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: smaller;
+    padding-top: 3px;
+}
+
+/** ---------------------- */
+/* Lists para simbolos de dinero */
+/** ---------------------- */
+ul.list17, ul.list18, ul.list19 {
+	margin:0;
+}
+ul.list17 li, ul.list18 li, ul.list19 li {
+	margin-bottom:10px;
+	padding-left:24px;
+	display:block;
+	list-style: none;
+}
+
+ul.list17 li {
+	background:url('../images/fugue/money--plus.png') no-repeat left center transparent;
+}
+ul.list18 li {
+	background:url('../images/fugue/zone-money.png') no-repeat left center transparent;
+}
+ul.list19 li {
+	background:url('../images/fugue/calendar-blue.png') no-repeat left center transparent;
+}
+/** ---------------------- */
+/* FIN Lists para simbolos de dinero */
+/** ---------------------- */
+
+
+/** ---------------------- */
+/* Para ver green fees reservados */
+/** ---------------------- */
+.greenFeeReservadoVer {
+	margin-top: 5px;
+}
+
+.greenFeeReservadoVer_ul {
+	padding-left: 0px;
+}
+
+.greenFeeReservadoVerTitulo {
+	text-decoration:underline;
+}
+
+/** ---------------------- */
+/* FIN Para ver green fees reservados */
+/** ---------------------- */
+
+
+/** ---------------------- */
+/* Para administrar green fees por parte de ROLE_CAMPO */
+/** ---------------------- */
+.greenFeeAdminFecha {
+	white-space: nowrap;	
+}
+/** ---------------------- */
+/* FIN Para administrar green fees por parte de ROLE_CAMPO */
+/** ---------------------- */
+
+
+/** ---------------------- */
+/* Para weekends en datepicker */
+/** ---------------------- */
+
+tr td.ui-datepicker-week-end, tr td.ui-datepicker-week-end a.ui-state-default {
+	color:blue;
+}
+
+/** ---------------------- */
+/* FIN Para weekends en datepicker */
+/** ---------------------- */
+
+/** ---------------------- */
+/* Para el Home */
+/** ---------------------- */
+
+/* Esto hace q en las promo GOLD se pueda usar todo el ancho xa el texto y demas */
+.jquery-lightbox-title {
+	width: 100%;
+}
+
+.h4Center {
+	text-align: center;
+}
+            
+.pTextGold {
+	font-size: larger;
+	text-align: center;
+}
+
+/** ---------------------- */
+/* FIN Para el Home */
+/** ---------------------- */
+
+.rightFloat {
+	float: right;
+}
+.pointeredMouse {
+	cursor: pointer;
+}
+.fontWeighted {
+	font-weight: bold;
+}
+.italicText {
+	font-style: italic;
+}
+
+/** ---------------------- */
+/* FIN Para Lista de campos */
+/** ---------------------- */
+
+.titledName {
+	font-size: 21px;
+}
+
+.descriptionP {
+    text-overflow: ellipsis; /* will make [...] at the end */
+    width: 200px; /* change to your preferences */
+    white-space: nowrap; /* paragraph to one line */
+    overflow:hidden; /* older browsers */
+}
+
+.giveMeEllipsis {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
+/** ---------------------- */
+/* FIN Para Lista de campos */
+/** ---------------------- */
+
+/** ---------------------- */
+/* Green fees horarios */
+/** ---------------------- */
+
+  .tooltip {
+    display:none;
+    background:transparent url(/media/black_arrow.png);
+    font-size:12px;
+    height:70px;
+    width:160px;
+    padding:25px;
+    color:#eee;
+  }
+  
+  .buttonNoMarginBottom {
+  	margin-bottom: 0px !important;
+  }
+  
+  .greenFeeTableText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  
+
+/** ---------------------- */
+/* FIN Para Green fees horarios */
+/** ---------------------- */
+
+/** ------------------------- */
+/** Inicio - Para la Reserva */
+/** ------------------------- */
+
+#wrapReserva {
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0;
+	width: 100%;
+	position: relative;
+}
+
+.wrap_blockReserva {
+	width: 100%; /* Para q no tenga nada a la derecha ni margin ni nada */
+	position: relative;
+	background: url(../images/wrap_block.png) repeat-x 0 0 #eee;
+	border-radius: 10px 10px 15px 15px;
+	-moz-border-radius: 10px 10px 15px 15px;
+	-webkit-border-radius: 10px 10px 15px 15px;
+	    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+	    -moz-box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+	    -webkit-box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.20);
+}
+
+
+.bodyReserva {
+	background: url(none); /* no existe pero no muestra nada al menos */
+  	min-width: 520px;
+  	width: 580px;
+  	height: 500px;
+  	
+}
+
+.containerReserva {
+	width: 580px;
+	height: 500px;	
+}
+
+#contactReserva  input[type=text], #contactReserva .email, #contactReserva  textarea{
+	color: #333;
+	font: 13px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	border: 1px solid #ccc;
+	padding:0 3px;
+	line-height: 24px;
+	margin: 10px 8px 21px -4px;
+	width: 380px;
+	height: 38px;
+	outline: none;
+	background: #fff;
+	-webkit-border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+
+#contactReserva  input[type=password] {
+	color: #333;
+	font: 13px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+	border: 1px solid #ccc;
+	padding:0 3px;
+	line-height: 24px;
+	margin: 10px 8px 21px -4px;
+	width: 380px;
+	height: 38px;
+	outline: none;
+	background: #fff;
+	-webkit-border-radius:0 5px 5px 0;
+	-moz-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+}
+
+
+#contactReserva .email:focus{
+	background: #fff;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+#contactReserva textarea{
+	height: 200px;
+	width: 514px;
+	padding:7px;
+	margin-left: 0;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+}
+
+#contactReserva label{
+	padding:0 0 0 30px;
+	height: 36px;
+	line-height: 36px;
+	display: block;
+}
+
+#contactReserva .input_label {
+	width: 100px !important;
+	display: inline-block;
+	background: #eee;
+	height: 36px;
+	line-height: 36px;
+	margin-right: 0;
+	border: 1px solid #ccc;
+	border-right: 1px solid #fff;
+	-webkit-border-radius:5px 0 0 5px;
+	-moz-border-radius:5px 0 0 5px;
+	border-radius:5px 0 0 5px;
+}
+
+
+#contactReserva .user label{
+	background: url(../images/user.png) no-repeat 8px center;
+}
+#contactReserva .user_email label{
+	background: url(../images/email.png) no-repeat 8px center;
+}
+#contactReserva .user_subject label{
+	background: url(../images/subject.png) no-repeat 8px center;
+}
+#contactReserva .user_verify label{
+	background: url(../images/verify.png) no-repeat 8px center;
+}
+#contactReserva .user_verify{
+	width: 100px !important;
+}
+#contactReserva .user_verify2{
+	width: 90px !important;
+}
+#contactReserva .user_verify2 label{
+	padding:0 !important;
+}
+#contactReserva .user_verify2 .c_img_verify{
+	margin: -4px 5px 0 6px;
+	padding:0;
+	border:0;
+}
+#contactReserva .div_verify{
+	float: left;
+}
+#contactReserva  input[type=submit] {
+	cursor: pointer;
+}
+
+#contactReserva  .captcha {
+	line-height: 20px;
+	width: 64px !important;
+	margin-top: 13px;
+	border: 1px solid #ccc;
+	font-weight: 700;
+	color: #000;
+}
+
+#contactReserva .contact_submit {
+	margin: 0;
+	margin-top: 11px !important;
+	margin-left: 12px;
+	padding: 8px 9px 9px !important;
+}
+
+.warningMessageReserva {
+	font-size: smaller;
+	font-style: italic;
+	text-align: justify;
+}
+
+/** ---------------------- */
+/** Fin - Para la Reserva */
+/** ---------------------- */
+
+/** ---------------------- */
+/** Inicio - En general */
+/** ---------------------- */
+
+.noMarginNoPadding {
+	margin-top:0px; 
+	margin-bottom:0px; 
+	padding-top:0px; 
+	padding-bottom:0px;	
+}
+
+.noMargin {
+	margin-top:0px; 
+	margin-bottom:0px;	
+}
+
+footer.main_footer .social a.google {
+	background: url(../images/social/google.png) no-repeat 0 0;
+}
+
+.button.smaller {
+	font-size: 70%;
+	font-weight: normal;
+	padding: 3px 8px !important;
+}
+
+.termsTitle {
+	font-weight: bold;
+	font-size: larger;
+}
+
+
+.labelSkitterNew {
+	width: 100%; 
+	display: block;
+	bottom: 0px;	
+}
+
+.skitterCaptionNew {
+	width: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	color: #FFF;
+	border: 0px;
+	padding: 0px;
+	maring: 0px;
+}
+
+.skitterH4New {
+	font-weight: bold;
+	color: #FFF;
+	margin-left: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.skitterPNew {
+	color: #FFF;
+	margin-left: 10px;
+	margin-top: 0px;
+	margin-bottom: 15px;
+	padding: 0px;
+}
+
+.headerButtonsNew {
+	margin-top: 3px !important;
+}
+
+
+/** ---------------------- */
+/** Fin - En general */
+/** ---------------------- */
+

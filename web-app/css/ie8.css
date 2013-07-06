@@ -1,0 +1,10 @@
+#contact input[type=text] { margin-top: -1px;line-height: 36px; }
+#contact input[type=password] { margin-top: -1px;line-height: 36px; }
+#contact input[type=submit] { margin-top: 1px; }
+
+#contactPanel input[type=text] { margin-top: -1px;height: 36px; line-height: 36px; }
+#contactPanel input[type=password] { margin-top: -1px;height: 36px; line-height: 36px; }
+
+#contactRegistro input[type=text] { margin-top: -1px;height: 36px; line-height: 36px; }
+#contactRegistro input[type=password] { margin-top: -1px;height: 36px; line-height: 36px; }
+#contactRegistro input[type=submit] { margin-top: 1px; }

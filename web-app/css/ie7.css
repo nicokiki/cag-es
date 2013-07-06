@@ -1,0 +1,103 @@
+/* 
+----------------------------
+Internet Explorer Fixes v1.0
+----------------------------
+ */
+
+/*Content*/
+.layout {
+position: relative;
+z-index: -10;
+}
+
+/* Main menu (Horizontal) */
+#nav ul {
+position: absolute;
+z-index: 999999 !important;
+}
+
+/* Jos page */
+.job {
+zoom: 1;
+}
+
+/* Demonstrative Flickr photos on sidebar */
+.flickr_photos{
+display: block;
+margin: 0 auto;
+zoom: 1;
+}
+
+/* Blog articles style 4 */
+#blog article.style4 {
+zoom: 1;
+}
+
+#blog article.style4 .block {
+overflow: hidden;
+}
+
+#blog article.style4 .meta_info {
+width: 96px;
+float: left;
+}
+
+/* Pagination */
+#list_pagination {
+display:block;
+margin: 0 auto;
+margin-top: 20px;
+margin-bottom: 10px;
+zoom: 1;
+}
+
+#list_pagination a, #list_pagination .active_list_link, #list_pagination .disabled_list_pagination{
+padding:2px 6px;
+border:1px solid #B4B4B4;
+border-top:1px solid #B4B4B4;
+border-bottom:1px solid #B4B4B4;
+zoom: 1;
+}
+
+#list_pagination .active_list_link {
+border:1px solid #666;
+}
+
+/* Contact form */
+#contact{
+margin-top: 10px;
+zoom: 1;
+}
+
+#contact label{
+display: block;
+}
+
+#contact .input_label {
+width: 80px !important;
+display: block;
+float: left;
+}
+
+#contact  input[type=text]{
+margin: -1px 8px 20px 0px;
+line-height: 36px;
+}
+
+#contact  input[type=submit]{
+margin: 0px 8px 20px 10px !important;
+padding: 7px 1px !important;
+}
+
+#contact  textarea{
+margin: -1px 8px 20px 0px;
+line-height: 24px;
+}
+
+/* IE7 do not understand background option for HR element so I've removed it and replaced with 1px border */
+ hr {
+border-bottom: 1px solid #aaa;
+clear: both;
+height: 0;
+background: none;
+}

@@ -1,0 +1,15 @@
+/* Menu bar */
+nav#horizontal {
+background: url(../../images/theme/fire/menu.png) center top;
+}
+
+/* Links color */
+a { color: #D33A12; }
+a:hover{ color: #E1451C; }
+
+/* Passive hedings link color */
+h1a, h2 a, h3 a, h4 a , h5 a, h6a{
+	color: #444;
+}
+
+
