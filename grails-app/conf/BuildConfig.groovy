@@ -15,7 +15,7 @@ grails.project.dependency.resolution = {
         // uncomment to disable ehcache
         // excludes 'ehcache'
     }
-    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
 
     repositories {
@@ -55,6 +55,8 @@ grails.project.dependency.resolution = {
 //		compile "org.grails.plugins:spring-security-facebook:0.10.3"
 		compile ":spring-security-facebook:0.14.2"
 		compile ":simple-captcha:0.9.1"
+		// https://github.com/krasserm/grails-jaxrs/wiki/Installation-Instructions
+//		compile ":jaxrs:0.7"
 		
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
