@@ -5,6 +5,8 @@
 # Target de grails
 target/
 target-eclipse/
+grails-app/conf/Config.groovy
+grails-app/conf/Datasource.groovy
 
 *.pydevproject
 .project
