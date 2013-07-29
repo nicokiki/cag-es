@@ -7,6 +7,14 @@ import org.joda.time.DateTime
 import org.joda.time.Days
 import org.springframework.transaction.annotation.Transactional
 
+import org.hibernate.criterion.Subqueries;
+import org.hibernate.transform.Transformers
+import grails.gorm.DetachedCriteria;
+
+import groovy.sql.Sql
+
+
+
 /**
  * Service para Green Fees.
  * 
@@ -20,6 +28,69 @@ class GreenFeeService {
 	
 	def sessionFactory
 	def propertyInstanceMap = org.codehaus.groovy.grails.plugins.DomainClassGrailsPlugin.PROPERTY_INSTANCE_MAP
+	
+	
+	// Nuevos
+	def utilService
+	
+	def busquedaDeCampos(String ubicacion, String fecha, Locale locale) {
+		/* Fecha de busqueda por defecto sera hoy
+		 * Ubicacion por defecto sera todo (es ciudad:nombre o region:nombre)
+		 */
+		def ubicacionAux = ubicacion
+		String nombreUbicacion = ("null" == ubicacionAux) ? null : ubicacionAux
+		DateTime desde = clockService.ahora()
+		if (fecha) {
+			desde = clockService.fromStringConHoraComienzo(fecha)
+		}
+		DateTime hasta = clockService.finalDeFecha(desde) // Busca por un dia
+		DateTime desdeAux = clockService.enXHorasSiEsHoy(desde);
+		log.debug("Buscando desde:'" + desdeAux + "', hasta:'" + hasta + "' ...")
+		
+		def detachedCriteria = utilService.parseUbicacion(nombreUbicacion, null)
+		def ubicacionSplitted = utilService.splitUbicacion(nombreUbicacion)
+		if (ubicacionSplitted[1].contains("Españ")) {
+			// Esto es feo pero no importa es x el encoding q no lo muestra bien :(
+			ubicacionSplitted[1] = "Espa&ntilde;a"
+		}
+		
+		def resultado = null
+		def campos = detachedCriteria.list()
+		if (!campos || campos.isEmpty()) {
+			resultado = new ArrayList<GreenFee>();
+		}
+		else {
+			// Hay un defect http://jira.grails.org/browse/GRAILS-8114
+			resultado = GreenFee.createCriteria().list() {
+				between("diaHora", desdeAux, hasta)
+				'in'("estado", GreenFee.ESTADOS_DISPONIBLES)
+				'in'("campo", campos)
+				fetchMode("campo", org.hibernate.FetchMode.JOIN)
+			}
+		}
+		
+		def diaEnTexto = clockService.getDiaTexto(desde, locale)
+		def formattedDate = clockService.formatted(desde)
+		def dia = clockService.formatted(desde, ClockService.dayFormatter)
+		def mes = clockService.formatted(desde, ClockService.monthFormatter)
+		def anio = clockService.formatted(desde, ClockService.yearFormatter)
+		
+		/* Ahora tengo un monton de Green Fees pero los tengo q "acumular"
+		 */
+		 def greenFeesInfo = this.decorateGreenFeeInfo(resultado, dia, mes, anio)
+		log.info("#greenFeeInfos encontrados: " + greenFeesInfo.size())
+						
+		def includeYesterday = (clockService.isToday(desde) ? "NO" : "YES");
+		String yesterdayFrom = clockService.formatted(desde.plusDays(-1));
+		String tomorrowFrom = clockService.formatted(desde.plusDays(1));
+		
+		def model = [	greenFeesInfo: greenFeesInfo, formattedDate: formattedDate, ubicacionSplitted: ubicacionSplitted[1],
+						includeYesterday: includeYesterday, nombreUbicacion: nombreUbicacion,
+						yesterdayFrom: yesterdayFrom, tomorrowFrom: tomorrowFrom, diaEnTexto: diaEnTexto];
+		
+		return model;
+	}
+
 	
 	
 	/**

@@ -28,4 +28,15 @@ class CampoService {
 		return campos
 	}
 	
+	def getCampos(int max, int offset) {
+		def responseCampos = Campo.createCriteria().list(max:max, offset:offset) {
+			maxResults(max)
+			firstResult(offset)
+			eq("estado", Campo.ACTIVO)
+			order('nombre', 'asc')
+		}
+
+		return responseCampos
+	}
+	
 }
