@@ -38,7 +38,7 @@ class CourseResource {
 		
 		log.info "#Campos a devolver: $courses.size"
 		
-		def coursesResponse = Response.status(200).entity(courses).build();
+		def coursesResponse = Response.status(Response.Status.OK).entity(courses).build();
 		return coursesResponse
     }
 }
