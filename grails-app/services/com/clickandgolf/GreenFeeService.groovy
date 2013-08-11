@@ -91,6 +91,87 @@ class GreenFeeService {
 		return model;
 	}
 
+	def busquedaDeCamposAvanzada(BigDecimal precioMax, String ubicacion, String fecha, String tipo, String hoyosAux, Locale locale) {
+		String nombreUbicacion = ("null" == ubicacion) ? null : ubicacion
+		DateTime desde = clockService.ahora()
+		if (fecha) {
+			desde = clockService.fromStringConHoraComienzo(fecha)
+		}
+		DateTime hasta = clockService.finalDeFecha(desde) // Busca por un dia
+		DateTime desdeAux = clockService.enXHorasSiEsHoy(desde);
+		
+		log.debug("Buscando desde:'" + desdeAux + "', hasta:'" + hasta + "' ...")
+		
+		def tipoAux = tipo ?: ""
+		def detachedCriteria = utilService.parseUbicacion(nombreUbicacion, tipoAux)
+		def ubicacionSplitted = utilService.splitUbicacion(nombreUbicacion)
+		if (ubicacionSplitted[1].contains("Españ")) {
+			// Esto es feo pero no importa es x el encoding q no lo muestra bien :(
+			ubicacionSplitted[1] = "Espa&ntilde;a"
+		}
+		
+		def resultado = null
+		def campos = detachedCriteria.list()
+		if (!campos || campos.isEmpty()) {
+			resultado = new ArrayList<GreenFee>();
+		}
+		else {
+			def hoyos = [GreenFee.HOYOS_18, GreenFee.HOYOS_9]
+			if ("18".equals(hoyosAux)) {
+				hoyos = [GreenFee.HOYOS_18]
+			}
+			else if ("9".equals(hoyosAux)) {
+				hoyos = [GreenFee.HOYOS_9]
+			}
+			
+			resultado = GreenFee.createCriteria().list() {
+				between("diaHora", desdeAux, hasta)
+				'in'("estado", GreenFee.ESTADOS_DISPONIBLES)
+				le("precio", new BigDecimal(precioMax))
+				'in'("campo", campos)
+				'in'("hoyos", hoyos)
+				fetchMode("campo", org.hibernate.FetchMode.JOIN)
+			}
+		}
+		def diaEnTexto = clockService.getDiaTexto(desde, locale)
+		def formattedDate = clockService.formatted(desde)
+		def dia = clockService.formatted(desde, ClockService.dayFormatter)
+		def mes = clockService.formatted(desde, ClockService.monthFormatter)
+		def anio = clockService.formatted(desde, ClockService.yearFormatter)
+		
+		/* Ahora tengo un monton de Green Fees pero los tengo q "acumular"
+		 */
+		 def greenFeesInfo = this.decorateGreenFeeInfo(resultado, dia, mes, anio)
+		log.info("#greenFeeInfos encontrados: " + greenFeesInfo.size())
+						
+		def includeYesterday = (clockService.isToday(desde) ? "NO" : "YES");
+		String yesterdayFrom = clockService.formatted(desde.plusDays(-1));
+		String tomorrowFrom = clockService.formatted(desde.plusDays(1));
+		
+		def model = [	greenFeesInfo: greenFeesInfo, formattedDate: formattedDate, ubicacionSplitted: ubicacionSplitted[1],
+						includeYesterday: includeYesterday, nombreUbicacion: nombreUbicacion,
+						yesterdayFrom: yesterdayFrom, tomorrowFrom: tomorrowFrom, diaEnTexto: diaEnTexto,
+						precioMax: precioMax]
+		
+		return model;
+	}
+	
+	def busquedaGreenFees(Campo campo, String fecha) {
+		DateTime desde = clockService.fromStringConHoraComienzo(fecha)
+		DateTime hasta = clockService.finalDeFecha(desde) // Busca por un dia
+		DateTime desdeAux = clockService.enXHorasSiEsHoy(desde);
+		log.info("Por listar los green-fees del campo '" + campo + "' recibido para la fecha " + fecha + "...")
+
+		def resultado = GreenFee.createCriteria().list() {
+			between("diaHora", desdeAux, hasta)
+			'in'("estado", GreenFee.ESTADOS_DISPONIBLES)
+			eq("campo", campo)
+			order("diaHora")
+			order("hoyos", "desc")
+		}
+
+		return resultado
+	}
 	
 	
 	/**

@@ -8,11 +8,7 @@ class RestAPIFilters {
 
 				log.info "Se esta llamando el BEFORE-FILTER para cada llamada de API"
 				
-				log.warn "El request tiene: $request"
-				def a = "aaa"
-				
-				log.info "$a"
-				
+//				log.warn "El request tiene: $request"
             }
         }
     }

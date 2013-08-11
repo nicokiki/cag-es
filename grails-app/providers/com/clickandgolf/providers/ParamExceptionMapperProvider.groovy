@@ -17,9 +17,9 @@ import com.sun.jersey.api.ParamException
 class ParamExceptionMapperProvider implements ExceptionMapper<ParamException> {
 
 	public Response toResponse(ParamException exception){
-
+		def msg = "Param-name:'" + exception.getParameterName() + "', Param-type:'" + exception.getParameterType() + "' incorrect. Please analyse the incompatibility with the latest docs."
 		return Response.status(Response.Status.BAD_REQUEST).
-		entity("'" + exception.getParameterName() + "' -> incorrect type. Please analyse the incompatibility with the latest docs").
+		entity(msg).
 		build();
 	}
 }
