@@ -120,17 +120,7 @@ class GreenFeeController {
 			redirect(action: "busquedaDeCampos")
 			return
 		}
-		DateTime hasta = clockService.finalDeFecha(desde) // Busca por un dia
-		DateTime desdeAux = clockService.enXHorasSiEsHoy(desde);
-		log.info("Por listar los green-fees del campo '" + campo + "' recibido para la fecha " + fecha + "...")
-
-		def resultado = GreenFee.createCriteria().list() {
-			between("diaHora", desdeAux, hasta)
-			'in'("estado", GreenFee.ESTADOS_DISPONIBLES)
-			eq("campo", campo)
-			order("diaHora")
-			order("hoyos", "desc")
-		}
+		def resultado = greenFeeService.busquedaGreenFees(campo, fecha)
 		
 		def locale = RCH.currentRequestAttributes()?.locale
 		def diaEnTexto = clockService.getDiaTexto(desde, locale)
@@ -153,102 +143,47 @@ class GreenFeeController {
 		}
 	}
 
-	def busquedaDeCamposOld() {
-		/* Fecha de busqueda por defecto sera hoy
-		 * Ubicacion por defecto sera todo (es ciudad:nombre o region:nombre)
+	def busquedaAvanzadaHiddenDoesntWork() {
+		/*
+		 * Precio maximo por defecto sera 250
+		 * Campo por defecto no hay
+		 * Descuento por defecto es 100 entonces se pide q el descuento sea meno*r o igual que
+		 * Golfistas Minimos es x defecto 1 (y se pide q sea mayor o igual)
+		 * Disponibles por defecto es 1 (y se pide q sea mayor o igual)
+		 *
 		 */
-		def sql = Sql.newInstance(dataSource)
-		
-		String nombreUbicacion = params.ubicacion
-		def condicionUbicacion = utilService.splitUbicacion(nombreUbicacion)
-		
-		log.info("condicionUbicacion: [0]:" + condicionUbicacion[0] + ", [1]:" + condicionUbicacion[1])
-		
-		// Hay q traerlo como array creo
-		String aux = "region"
-		
-		// TODO Esta mal la TABLA VIRTUAL xq barre todo => ir a lo facil q tenia antes :-)
-		
-		def rows = sql.rows("  " +
-							  " SELECT " +
-							  "     c.nombre as nombreCampo, c.id as idCampo,  " +
-							  "     day(go.dia_hora) as dia, min(go.menor_10) as menor_10, min(go.diez_13) as diez_13, " +
-							  "		min(go.trece_16) as trece_16, min(go.mayor_16) as mayor_16" +
-							  " FROM  " +
-							  "     ( " +
-							  "     select " +
-							  "         g.campo_id, g.dia_hora, " +
-							  "         coalesce ( case when hour(g.dia_hora) < 11 then g.precio end, -1) as menor_10, " +
-							  "         coalesce ( case when hour(g.dia_hora) between 11 and 13 then g.precio end, -1) as diez_13, " +
-							  "         coalesce ( case when hour(g.dia_hora) between 14 and 16 then g.precio end, -1) as trece_16, " +
-							  "         coalesce ( case when hour(g.dia_hora) > 16 then g.precio end, -1) as mayor_16 " +
-							  "     from " +
-							  "         green_fee g " +
-							  "     ) as go " +
-							  "     inner join CAMPO c on c.id = go.campo_id " +
-							  "     inner join UBICACION u on u.id = c.ubicacion_id " +
-							  " where  " +
-//							  "        u.region='Catalunya' " +
-							  "		u." + condicionUbicacion[0] + "=:condicionUbicacion " +		
-//							  "		u.region=:condicionUbicacion " +		
-							  "     and " +
-							  "         DATE(go.dia_hora) between '2012-12-17' and '2013-01-30' " +
-							  " group by " +
-							  "     c.id, day(go.dia_hora) "
-//							  )
-//							  , [condicionUbicacion:'Catalunya'])
-							  , [condicionUbicacion:condicionUbicacion[1]])
-		
-		log.info("rows: " + rows)
-		
-		def greenFeeViews = rows.collect {
-			GreenFeeView a = new GreenFeeView(	nombreCampo: it.nombreCampo, idCampo:it.idCampo, dia: it.dia, menor_10:BigDecimal.valueOf(it.menor_10), 
-												diez_13:BigDecimal.valueOf(it.diez_13), trece_16:BigDecimal.valueOf(it.trece_16), 
-												mayor_16:BigDecimal.valueOf(it.mayor_16))
-			
-			log.info("a.nombreCampo:" + a.nombreCampo)
-			log.info("a.menor_10:" + a.menor_10)
-		}
-		
-		
-		
-//		params.max = params.max ? params.int('max') : 15
-//		params.offset = params.offset ? params.int('offset') : 0
-//		DateTime desde = clockService.ahora()
-//		if (params.fecha) {
-//			desde = clockService.fromStringConHoraActual(params.fecha) 
-//		}
-//		String nombreUbicacion = params.ubicacion
-//		def detachedCriteria = utilService.parseUbicacion(nombreUbicacion)
-		
-//		def resultado = GreenFee.createCriteria().list(max:params.max, offset:params.offset) {
-//			maxResults(params.max)
-//			firstResult(params.offset)
-//			'in'("campo", detachedCriteria.list())
-//			ge("diaHora", desde)
-//		}
-		
-		// de 7-10 // 10-13 // 13-16 // 16-19
-		// la idea es q cada link apunte a un controller con campo, fecha y listo
-		
-		// Yo tengo q traer de la BD los green fees. Luego los tengo q agrupar solo 
-		// x campo y en los rangos horarios de manera de q solo muestre en el listado los campos
-		
-		
-//		def totalGreenFees = resultado.getTotalCount()
-		
-		log.info("totalGreenFees: " + greenFeeViews)
 
-	}
+		def ubicaciones = Ubicacion.createCriteria().list() {
+			order("region")
+			order("ciudad")
+		}
+
+		def precioMax = params.precioMax ? params.double('precioMax') : 250
+		def ubicacionAux = params.ubicacion
+		def locale = RCH.currentRequestAttributes()?.locale
 		
+		def model = greenFeeService.busquedaDeCamposAvanzada(precioMax, ubicacionAux, params.fecha, params.tipo ?: "",  params.hoyos ?: "", locale)
+		model[ubicaciones] = ubicaciones
+		
+		if (request.xhr) {
+			log.debug("AJAX request recibido ...")
+			render(template: "greenFees", model: model)
+		}
+		else {
+			log.info("No AJAX ...")
+			model
+		}
+	}
+
 	def busquedaDeCamposAvanzada() {
 		/*
+		 * La deje como antes porque fallaba por algun maldito motivo
 		 * Precio maximo por defecto sera 10000
 		 * Campo por defecto no hay
 		 * Descuento por defecto es 100 entonces se pide q el descuento sea meno*r o igual que
 		 * Golfistas Minimos es x defecto 1 (y se pide q sea mayor o igual)
 		 * Disponibles por defecto es 1 (y se pide q sea mayor o igual)
-		 * 
+		 *
 		 */
 		def ubicaciones = Ubicacion.createCriteria().list() {
 			order("region")
@@ -328,31 +263,9 @@ class GreenFeeController {
 			log.info("No AJAX ...")
 			model
 		}
-	}
-	
-	
-	/** Inner class para recuperar datos de consulta de green fees via SQL puro
-	 * 
-	 * @author gonznic
-	 */
-	class GreenFeeView {
-		String nombreCampo
-		Integer idCampo
-		Integer dia
-		BigDecimal menor_10
-		BigDecimal diez_13
-		BigDecimal trece_16
-		BigDecimal mayor_16
-		@Override
-		public String toString() {
-			return "GreenFeeView [nombreCampo=" + nombreCampo + ", menor_10="
-					+ menor_10 + ", diez_13=" + diez_13 + ", trece_16="
-					+ trece_16 + ", mayor_16=" + mayor_16 + "]";
-		}
-		
+
 		
 	}
-	
 
 	
 }
