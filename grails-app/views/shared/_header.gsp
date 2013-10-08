@@ -156,6 +156,11 @@
 							<ul id="nav">
 								<li>
 									<a href="/"><g:message code="header.home.label" default="Home"/><br /><em><g:message code="header.home.under.label" default="Ir a inicio"/></em></a>
+                                    <ul>
+                                        <li>
+                                            <g:link action="busquedaDeCamposAvanzada" controller="greenFee"><g:message code="home.busqueda.avanzada.label"/></g:link>
+                                        </li>
+                                    </ul>
 								</li>
 								<li>
 									<g:link action="listaDeCampos" controller="campo"><g:message code="header.campos.label" /><br /><em><g:message code="header.campos.under.label" default="Ver todos" /></em></g:link>

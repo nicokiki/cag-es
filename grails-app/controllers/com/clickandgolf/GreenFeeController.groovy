@@ -13,6 +13,7 @@ import groovy.sql.Sql
 
 import com.clickandgolf.ClockService
 import com.clickandgolf.UtilService
+
 import org.springframework.web.context.request.RequestContextHolder as RCH
 
 /**
