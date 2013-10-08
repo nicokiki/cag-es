@@ -130,7 +130,7 @@
 										buyerId="${user.id}"
 										currency="EUR"
 										buttonSrc="${buttonSrc}"
-										params="[lc:"${lc}",golfistas:"${golfistas}",langSaved:"${langSaved}"]"
+										params="[lc:"${lc}",golfistas:"${golfistas}",langSaved:"${langSaved}",charset:"utf-8"]"
 										returnAction="exito"
 										returnController="reserva"
 										cancelAction="cancelacion"

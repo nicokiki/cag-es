@@ -11,7 +11,7 @@ class GolfPaypalTagLib {
 
 	def paypal = { attrs ->
 		def config = grailsApplication.config.grails.paypal
-		def itemName = attrs.itemName
+		def itemName = attrs?.itemName.encodeAsHTML()
 		def itemNumber = attrs.itemNumber
 		def amount = attrs.amount
 		def discountAmount = attrs.discountAmount

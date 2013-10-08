@@ -20,7 +20,8 @@ class PaypalController {
 		def url = new URL(server)
 		def conn = url.openConnection()
 		conn.doOutput = true
-		def writer = new OutputStreamWriter(conn.getOutputStream())
+		// Lo puse por el issue de Paypal y el encoding maldito https://github.com/nicokiki/cag-es/issues/6
+		def writer = new OutputStreamWriter(conn.getOutputStream(), "UTF-8")
 		writer.write queryString
 		writer.flush()
 
@@ -181,11 +182,11 @@ class PaypalController {
 			def notifyURL = g.createLink(absolute: baseUrl==null, base: baseUrl, controller: 'paypal', action: 'notifyPaypal', params: commonParams).encodeAsURL()
 			def successURL = g.createLink(absolute: baseUrl==null, base: baseUrl, controller: 'paypal', action: 'success', params: commonParams).encodeAsURL()
 			def cancelURL = g.createLink(absolute: baseUrl==null, base: baseUrl, controller: 'paypal', action: 'cancel', params: commonParams).encodeAsURL()
-
+			
 			def url = new StringBuffer("$server?")
 			url << "cmd=_xclick&"
 			url << "business=$login&"
-			url << "item_name=${payment.paymentItems[0].itemName}&"
+			url << "item_name=${payment.paymentItems[0].itemName.encodeAsHTML()}&"
 			url << "item_number=${payment.paymentItems[0].itemNumber}&"
 			url << "quantity=${payment.paymentItems[0].quantity}&"
 			url << "amount=${payment.paymentItems[0].amount}&"
@@ -196,6 +197,11 @@ class PaypalController {
 			url << "currency_code=${payment.currency}&"
 			if (params.lc) 
 			    url << "lc=${params.lc}&"
+				
+			// Agregado debido al issue de utf-8 que hace que no funcione (error de julio con el frances que no pudo comprar) 	
+			if (params.charset)
+				url << "charset=${params.charset}&"
+				
 			url << "notify_url=${notifyURL}&"
 			url << "return=${successURL}&"
 			url << "cancel_return=${cancelURL}"
