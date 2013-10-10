@@ -22,6 +22,8 @@ class CampoController {
     def listaDeCampos() {
 		log.info("Por empezar con lista de campos ...")
 		
+		DateTime desde = clockService.comienzoHoy().plusDays(1)
+		
 		params.max = params.max ? params.int('max') : 5
 		params.offset = params.offset ? params.int('offset') : 0
 		params.sort = params.sort ? params.sort : 'nombre'
@@ -36,7 +38,10 @@ class CampoController {
 		def totalCampos = resultado.getTotalCount()
 		log.info("totalCampos: " + totalCampos)
 
-		def model = [campos: resultado, totalCampos: totalCampos]
+		// La fecha es xa armar el link a reservar los green fees
+		def fecha = [dia:clockService.formatted(desde, ClockService.dayFormatter), mes:clockService.formatted(desde, ClockService.monthFormatter), anio:clockService.formatted(desde, ClockService.yearFormatter)]
+		
+		def model = [campos: resultado, totalCampos: totalCampos, fecha: fecha]
 		
 		
 		if (request.xhr) {
@@ -56,6 +61,8 @@ class CampoController {
 	def listaDeCamposDeGolf() {
 		log.info("Por empezar con lista de campos ...")
 		
+		DateTime desde = clockService.comienzoHoy().plusDays(1)
+		
 		params.max = params.max ? params.int('max') : 5
 		params.offset = params.offset ? params.int('offset') : 0
 		params.sort = params.sort ? params.sort : 'nombre'
@@ -71,8 +78,10 @@ class CampoController {
 		def totalCampos = resultado.getTotalCount()
 		log.info("totalCampos: " + totalCampos)
 
-		def model = [campos: resultado, totalCampos: totalCampos]
+		// La fecha es xa armar el link a reservar los green fees
+		def fecha = [dia:clockService.formatted(desde, ClockService.dayFormatter), mes:clockService.formatted(desde, ClockService.monthFormatter), anio:clockService.formatted(desde, ClockService.yearFormatter)]
 		
+		def model = [campos: resultado, totalCampos: totalCampos, fecha: fecha]
 		
 		if (request.xhr) {
 			log.debug("AJAX request recibido ...")
@@ -89,8 +98,9 @@ class CampoController {
 	 * @return
 	 */
 	def listaDeCamposDePitchAndPutt() {
+		log.info("Por empezar con lista de campos de Pitch and Putt ...")
 		
-		log.info("Por empezar con lista de campos ...")
+		DateTime desde = clockService.comienzoHoy().plusDays(1)
 		
 		params.max = params.max ? params.int('max') : 5
 		params.offset = params.offset ? params.int('offset') : 0
@@ -107,8 +117,10 @@ class CampoController {
 		def totalCampos = resultado.getTotalCount()
 		log.info("totalCampos: " + totalCampos)
 
-		def model = [campos: resultado, totalCampos: totalCampos]
+		// La fecha es xa armar el link a reservar los green fees
+		def fecha = [dia:clockService.formatted(desde, ClockService.dayFormatter), mes:clockService.formatted(desde, ClockService.monthFormatter), anio:clockService.formatted(desde, ClockService.yearFormatter)]
 		
+		def model = [campos: resultado, totalCampos: totalCampos, fecha: fecha]
 		
 		if (request.xhr) {
 			log.debug("AJAX request recibido ...")

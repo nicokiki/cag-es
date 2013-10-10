@@ -73,7 +73,7 @@
 				<div class="errorMessage">${flash.message}</div>
 			</g:if>
 					
-			<section class="grid_10">
+			<section class="grid_12">
 				<div id="blog">
    					<g:render template="campos" model="model" />
   				</div>

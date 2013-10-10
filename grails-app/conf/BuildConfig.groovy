@@ -41,6 +41,8 @@ grails.project.dependency.resolution = {
 //		compile ":geolocation:0.4.1"
 		compile "org.jadira.usertype:usertype.jodatime:1.9"
 		
+//		compile ":swagger4jaxrs:0.1"
+		
         runtime 'mysql:mysql-connector-java:5.1.16'
     }
 
@@ -61,6 +63,8 @@ grails.project.dependency.resolution = {
         //runtime ":cached-resources:1.0"
         //runtime ":yui-minify-resources:0.1.4"
 
+		test ":spock:0.7"
+		
         build ":tomcat:$grailsVersion"
     }
 }

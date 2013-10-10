@@ -35,8 +35,7 @@ class GreenFeeOption {
 									minPriceRangeThree: greenFeeCommand?.precioRangoTres)
 		
 		greenFeeOption.courseURI = grailsLinkGenerator.link(mapping: 'campo', params: [id:greenFeeCommand?.campo?.id, nombre:greenFeeCommand?.campo?.hyphenatedNombre])
-		greenFeeOption.detailedGreenFeesURI = "/clickandgolf/api/greenfee/course/" + greenFeeCommand?.campo?.id + "?dateAsText=" + greenFeeOption.day + "/" + greenFeeOption.month + "/" + greenFeeOption.year  
-		
+		greenFeeOption.detailedGreenFeesURI = "/api/greenfee/course/" + greenFeeCommand?.campo?.id + "?dateAsText=" + greenFeeOption.day + "/" + greenFeeOption.month + "/" + greenFeeOption.year  
 		
 		return greenFeeOption; 
 	}
