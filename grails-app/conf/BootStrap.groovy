@@ -55,7 +55,24 @@ class BootStrap {
 					log.info("Dando ROLE_ADMIN a nicolas.gonzalez@clickandgolf.es ...")
 				}
 				log.info("Usuario ADMIN creado y/o verificado")
+
+				// Inicio Creacion usuarios Guest de API
+				def apiGuestUser = User.findByUsername("api-guest-one@api.es") ?: new User(username: "api-guest-one@api.es", enabled: true, password: "ApigU3st", email: "api-guest-one@api.es").save(failOnError: true)
+				if (!apiGuestUser.authorities.contains(userRole)) {
+					UserRole.create(apiGuestUser, userRole, true)
+					log.info("Dando ROLE_USER a api-guest-one@api.es ...")
+				}
+				log.info("Usuario API GUEST creado y/o verificado")
+
+				def apiGuestUserTwo = User.findByUsername("api-guest-two@api.es") ?: new User(username: "api-guest-two@api.es", enabled: true, password: "ApigU3st", email: "api-guest-two@api.es").save(failOnError: true)
+				if (!apiGuestUserTwo.authorities.contains(userRole)) {
+					UserRole.create(apiGuestUserTwo, userRole, true)
+					log.info("Dando ROLE_USER a api-guest-two@api.es ...")
+				}
+				log.info("Usuario API GUEST TWO creado y/o verificado")
+				// Fin Creacion usuarios Guest de API
 				
+								
 				// Me voy a crear un campo de prueba exclusivamente para tener de testing
 				def barcelona = Ubicacion.findByCiudad("Barcelona") ?: new Ubicacion(ciudad: "Barcelona", provincia: "Barcelona", region: "Catalunya").save(failOnError: true)
 				def scMetadataTest = Scorecardmetadata.findByNombre("TESTscorecardmetadata-sc-md") ?: new Scorecardmetadata(nombre: "TESTscorecardmetadata-sc-md").save(failOnError: true)
@@ -107,8 +124,24 @@ class BootStrap {
 						UserRole.create(adminUser, adminRole, true)
 						log.info("Dando ROLE_ADMIN a nicolas.gonzalez@clickandgolf.es")
 					}
-					
 					log.info("Lo del usuario admin fue verificado ...")
+					
+					// Inicio Creacion usuarios Guest de API
+					def apiGuestUser = User.findByUsername("api-guest-one@api.es") ?: new User(username: "api-guest-one@api.es", enabled: true, password: "ApigU3st", email: "api-guest-one@api.es").save(failOnError: true)
+					if (!apiGuestUser.authorities.contains(userRole)) {
+						UserRole.create(apiGuestUser, userRole, true)
+						log.info("Dando ROLE_USER a api-guest-one@api.es ...")
+					}
+					log.info("Usuario API GUEST creado y/o verificado")
+	
+					def apiGuestUserTwo = User.findByUsername("api-guest-two@api.es") ?: new User(username: "api-guest-two@api.es", enabled: true, password: "ApigU3st", email: "api-guest-two@api.es").save(failOnError: true)
+					if (!apiGuestUserTwo.authorities.contains(userRole)) {
+						UserRole.create(apiGuestUserTwo, userRole, true)
+						log.info("Dando ROLE_USER a api-guest-two@api.es ...")
+					}
+					log.info("Usuario API GUEST TWO creado y/o verificado")
+					// Fin Creacion usuarios Guest de API
+	
 					
 					// Lista las ubicaciones que estan
 					def ubicaciones = Ubicacion.createCriteria().list() {
@@ -438,7 +471,28 @@ class BootStrap {
 				
 //				def user1 = new User( username: 'reservas@golfcostadoradatarragona.com', enabled: true, password: 'Golf1CostaDorada9', email: 'reservas@golfcostadoradatarragona.com').save(failOnError: true)
 				
+				// Valida que esten los roles minimos
+				def adminRole = Role.findByAuthority("ROLE_ADMIN") ?: new Role(authority: "ROLE_ADMIN").save(failOnError: true)
+				def campoRole = Role.findByAuthority("ROLE_CAMPO") ?: new Role(authority: "ROLE_CAMPO").save(failOnError: true)
+				def userRole = Role.findByAuthority("ROLE_USER") ?: new Role(authority: "ROLE_USER").save(failOnError: true)
+				def facebookRole = Role.findByAuthority("ROLE_FACEBOOK") ?: new Role(authority: "ROLE_FACEBOOK").save(failOnError: true)
 				
+				// Inicio Creacion usuarios Guest de API
+				def apiGuestUser = User.findByUsername("api-guest-one@api.es") ?: new User(username: "api-guest-one@api.es", enabled: true, password: "ApigU3st", email: "api-guest-one@api.es").save(failOnError: true)
+				if (!apiGuestUser.authorities.contains(userRole)) {
+					UserRole.create(apiGuestUser, userRole, true)
+					log.info("Dando ROLE_USER a api-guest-one@api.es ...")
+				}
+				log.info("Usuario API GUEST creado y/o verificado")
+
+				def apiGuestUserTwo = User.findByUsername("api-guest-two@api.es") ?: new User(username: "api-guest-two@api.es", enabled: true, password: "ApigU3st", email: "api-guest-two@api.es").save(failOnError: true)
+				if (!apiGuestUserTwo.authorities.contains(userRole)) {
+					UserRole.create(apiGuestUserTwo, userRole, true)
+					log.info("Dando ROLE_USER a api-guest-two@api.es ...")
+				}
+				log.info("Usuario API GUEST TWO creado y/o verificado")
+				// Fin Creacion usuarios Guest de API
+
 				def ubicaciones = Ubicacion.createCriteria().list() {
 					order("region")
 					order("ciudad")

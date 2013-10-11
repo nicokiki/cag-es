@@ -43,6 +43,9 @@ class CourseResource {
 		log.info "Por devolver el campo $id ..."
 		
 		def campo = Campo.get(id)
+		if (!campo) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
 		def course = Course.fromCampo(campo, grailsLinkGenerator);
 		
 		def courseResponse = Response.status(Response.Status.OK).entity(course).build();

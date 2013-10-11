@@ -108,6 +108,7 @@ class ClockService {
 		return chosenFormatter.print(fecha);
 	}
 	
+	
 	boolean isToday(DateTime fecha) {
 		if (null == fecha) {
 			return false;

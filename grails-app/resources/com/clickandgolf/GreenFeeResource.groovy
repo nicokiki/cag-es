@@ -1,17 +1,18 @@
 package com.clickandgolf
 
+import java.text.ParseException;
+
 import javax.ws.rs.DefaultValue
 import javax.ws.rs.GET
 import javax.ws.rs.Path
-import javax.ws.rs.PathParam;
+import javax.ws.rs.PathParam
 import javax.ws.rs.Produces
 import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Response
 
-import com.sun.jersey.api.ParamException.QueryParamException;
-
 import com.clickandgolf.api.GreenFeeOption
 import com.clickandgolf.api.GreenFee
+import com.sun.jersey.api.ParamException.QueryParamException
 
 
 @Path('/api/greenfee')
@@ -19,7 +20,6 @@ class GreenFeeResource {
 	
 	static final typeValues = ['city', 'province', 'region']
 	static final typeMappings = [city:'ciudad', province:'provincia', region:'region']
-	
 	
 	def greenFeeService
 	def grailsLinkGenerator
@@ -57,6 +57,10 @@ class GreenFeeResource {
 				locationAux = typeMappings[locationType] + ":" + locationName
 			}
 		}
+		if (!isLegal(dateAsText)) {
+			log.info "dateAsText received '${dateAsText}' does not respect the pattern 'dd/MM/yyyy'"
+			throw new QueryParamException(null, "dateAsText", "dateAsText does not respect the pattern 'dd/MM/yyyy'")
+		}
 										
 		log.info "Por devolver opciones de green fees. maxPrice:$maxPrice, locationAux:$locationAux, dateAsText:$dateAsText, courseType:$courseType, courseHoles:$courseHoles"
 		def locale = new Locale("es","ES")
@@ -84,6 +88,11 @@ class GreenFeeResource {
 			log.info "La dateAsText recibida es null. Exception lanzada. Cannot proceed."
 			throw new QueryParamException(null, "dateAsText", "CANNOT be null")
 		}
+		if (!isLegal(dateAsText)) {
+			log.info "dateAsText received '${dateAsText}' does not respect the pattern 'dd/MM/yyyy'"
+			throw new QueryParamException(null, "dateAsText", "dateAsText does not respect the pattern 'dd/MM/yyyy'")
+		}
+		
 		def campo = Campo.get(courseId)
 		
 		log.info "Por buscar green fees para el campo $campo para la fecha $dateAsText"
@@ -99,6 +108,13 @@ class GreenFeeResource {
 		
 		def coursesResponse = Response.status(Response.Status.OK).entity(greenFees).build();
 		return coursesResponse
+	}
+						
+	private boolean isLegal(String fechaString) {
+		if (fechaString.length() != 10) {
+			return false
+		}
+		return true
 	}
 	
 }
